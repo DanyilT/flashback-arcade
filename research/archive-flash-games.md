@@ -21,7 +21,7 @@ in "Researched but not shipped".
 > the archive's Ruffle. A game rejected then can behave differently in ours (and
 > vice versa), so a rejection is worth re-testing rather than trusting.
 
-## Shipped — verified playing (46 of 48 entries)
+## Shipped — verified playing (60 of 62 entries)
 
 Not every entry is playable here. 4 carry an `error` field and appear only in
 the `?all=1` catalogue, greyed and badged with the reason — see "Researched but
@@ -425,3 +425,136 @@ The series is now complete on this site: Worlds 1, 2, 3, all three parts of
 World 4, World 1 Remix, The Cutie Pants Adventures, Fancy Box and Fancy
 Snowboarding. What remains unadded are the demos (Sneak Peek, World 2 Demo —
 tagged `Trial` and `Incomplete`) and three duplicate World 1 Remix uploads.
+
+## Papa's: the complete Flash series (2026-09-23)
+
+Fourteen games, Flipline Studios, 2007–2018 — the whole Flash run, from
+Pizzeria to Scooperia. Flashpoint files them under `series: "Papa's"`, and all
+fourteen are `Playable` and `zipped: true` there.
+
+### Where they come from
+
+One archive.org item, [`papas_games`](https://archive.org/details/papas_games),
+carries all fourteen as loose `.swf` files — and the filenames are the same
+ones Flashpoint's launch commands point at on `i.flipline.com`:
+
+| game | file | size | SWF | stage | Flashpoint UUID |
+| ---- | ---- | ---- | --- | ----- | --------------- |
+| Papa's Pizzeria | `papaspizzeria_v2.swf` | 2.8 MB | v9 **AVM1** | 600×450 | `279b23ca-…` |
+| Papa's Burgeria | `papasburgeria_v2.swf` | 3.8 MB | v12 AS3 | 640×480 | `f55d6576-…` |
+| Papa's Taco Mia! | `papastacomia_v2.swf` | 5.4 MB | v12 AS3 | 640×480 | `6a7c068c-…` |
+| Papa's Freezeria | `papasfreezeria_v2.swf` | 5.8 MB | v12 AS3 | 640×480 | `92ba2d91-…` |
+| Papa's Pancakeria | `papaspancakeria_v2.swf` | 6.5 MB | v12 AS3 | 640×480 | `9525910d-…` |
+| Papa's Wingeria | `papaswingeria_v2.swf` | 7.7 MB | v10 AS3 | 640×480 | `c3ab2546-…` |
+| Papa's Hot Doggeria | `papashotdoggeria_v2.swf` | 8.7 MB | v10 AS3 | 640×480 | `92781aea-…` |
+| Papa's Cupcakeria | `papascupcakeria_v2.swf` | 8.9 MB | v10 AS3 | 640×480 | `de163cff-…` |
+| Papa's Pastaria | `papaspastaria_v2.swf` | 10.6 MB | v10 AS3 | 640×480 | `2ecf56d6-…` |
+| Papa's Donuteria | `papasdonuteria_102.swf` | 12.2 MB | v10 AS3 | 640×480 | `938f4383-…` |
+| Papa's Cheeseria | `papascheeseria_102.swf` | 12.3 MB | v10 AS3 | 640×480 | `617ca7f3-…` |
+| Papa's Bakeria | `papasbakeria_101.swf` | 14.4 MB | v10 AS3 | 640×480 | `a8707c0f-…` |
+| Papa's Sushiria | `papassushiria_101.swf` | 15.6 MB | v10 AS3 | 640×480 | `b9a8dbb9-…` |
+| Papa's Scooperia | `papasscooperia_v102.swf` | 20.7 MB | v35 AS3 | 640×480 | `1e903a30-…` |
+
+All fourteen also have a GameZIP in the Flashpoint mirror (`GameData_3`,
+`GameData_16` and `GameData_23` of `Flashpoint13.0`), recorded as the fallback
+in `fileFlashpointArchiveZip`. `preferSource` is `fileArchive` for every one:
+the loose file is a single request, the GameZIP costs a zip extraction out of a
+100 GB+ part for the same bytes.
+
+**"The same bytes" is checked, not assumed.** Papa's Pizzeria's GameZIP was
+pulled and its `content/i.flipline.com/gamefiles/papaspizzeria/papaspizzeria_v2.swf`
+hashed against the loose archive.org file:
+
+```
+fp   2842151  sha256:86ebb12d28020e534ebd5c9a04788f971cff08a4c73b900c40abff137a40d2c4
+ia   2842151  sha256:86ebb12d28020e534ebd5c9a04788f971cff08a4c73b900c40abff137a40d2c4
+```
+
+Identical. The other thirteen match Flashpoint's launch-command filename and
+byte size exactly, which is the same argument one step weaker.
+
+That GameZIP is also a good illustration of what a Flashpoint entry actually
+holds: four members, one of them `content.json`, and **three different
+uploads** of the game — the Flipline original plus copies from
+`static.game24h.vn` and `www.timefall.com`. The entry's `launchCommand` picks
+which one is the game; the rest are provenance.
+
+### Verified
+
+Flashpoint's `Playable` status is about Flash Player, not Ruffle, so it proves
+nothing about this site. Every one of the fourteen was opened in the browser
+and **clicked through the advert → preloader → splash → title screen → save
+slots**, which exercises the AS3 VM, the asset pipeline and mouse input.
+Papa's Pizzeria was taken further: new file, name typed in, intro, Day 1 with
+the shop open.
+
+Notes from doing it:
+
+- **Papa's Pizzeria is the only AVM1 game in the series.** Ruffle logs
+  `Tried to instantiate a non-registered character FocusManager` for it, an
+  unimplemented Flash UI component. Cosmetic — the title screen, the name field
+  and typing into it all work.
+- **The wait before the title screen is the author's, not ours.** Each game
+  opens on a Flipline house advert with a loading bar under it, and that bar
+  takes roughly half a minute to fill whether the movie is 2.8 MB or 20 MB — so
+  it is not tracking our download. Our stage loader is long gone by then; it
+  leaves at the moment Ruffle has a stage.
+- **Two refused requests, neither of them fatal.** All fourteen ask
+  `http://www.fliplineads.com/serve/data/<game>.xml` on startup — the ad server
+  that fills that house advert — and Papa's Freezeria additionally asks
+  `http://agi.armorgames.com/assets/agi/AGI.swf`, the sponsor API for the one
+  game in the series Armor Games sponsored. The network policy refuses both;
+  the advert falls back to a built-in one and every game plays through.
+
+  The ad request is also a neat demonstration that these builds are **not**
+  site-locked. It carries the domain it is running on —
+  `?t=…&w=640&d=archive%2Eorg&h=480&p=WIN%2032%2C0%2C0%2C0&v=2%2E0` — reads it
+  off the movie's own URL, and does nothing with the answer but draw a banner.
+  Nothing here spoofs that value; `archive.org` is honestly where the file came
+  from.
+
+### Saves
+
+The Papa's games call `SharedObject.getLocal(name, "/")`, so Ruffle keys them
+at the host root rather than under the SWF's path:
+
+```
+archive.org//RoyPizzeriaSlot1     (Pizzeria, AVM1)
+archive.org//papasburgeria_1      (Burgeria, AS3)
+```
+
+One namespace shared with every other archive-streamed game that saves at the
+root — but each name carries its own game, so nothing in the series collides,
+and nothing collides with the existing `//analytics` and
+`//com.spilgames.settings.1` (those come from **blob** movies, which have no
+host at all). Keys are stable across loads, so no save bridge is needed; the
+bridge exists only for GameZIP games on `blob:` URLs.
+
+Worth recording how this was established: the SOL names are **assembled at
+runtime** and do not appear as strings in the SWF. Scanning all fourteen
+constant pools for `slot`-ish strings returns only `slot1MC`, `slot2MC`,
+`slot3MC` — movie-clip symbol names for the three slot panels on the save
+screen. The only reliable method was to play two of them far enough to force a
+write and read `localStorage`.
+
+### One consequence for the wall
+
+Adding fourteen games of one series on one day broke the wall's ordering rule
+— not the code, the rule. `prioritise()` put new arrivals first and *then* dealt
+the rest out series by series, so fourteen same-day arrivals from one series
+took the entire top of the wall, which is exactly what the round-robin exists
+to prevent. It is now a single pass: deal one series at a time, and let the
+series holding the newest game deal first. New games still surface at the front
+— first card out of the first bucket — without a series being able to flood it.
+
+### Not added
+
+The rest of the Flipline catalogue is out of scope for "the Papa's series", but
+it is in Flashpoint and easy to reach later: the Papa Louie platformers
+(`When Pizzas Attack!`, `When Burgers Attack!`, `When Sundaes Attack!`), Cactus
+McCoy 1–2, Jacksmith, Rock Garden, Steak and Jake. The `To Go!` and `HD`
+releases are mobile builds, not Flash, and cannot run here at all.
+
+Fan games sharing the name were also skipped: Papa's MLGeria, Papa's Salad
+Stall, Papa's Pizza Recipe and Papa's Pizzeria COVID-19 are by other authors,
+and The Smurfs: Papa's Memory is unrelated.

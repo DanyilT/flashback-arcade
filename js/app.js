@@ -443,17 +443,28 @@
      far fewer. `baseList` decides what gets cut, so its ORDER is the policy:
      whatever sits at the front survives.
 
-     Two rules, in this order:
+     One rule, applied to everything: deal the games out one series at a time,
+     and let the series that gained a game most recently take the first turn.
 
-       1. New arrivals first. A game carrying an `added` date is what someone
-          came back to see, so it goes to the head of the wall, newest first.
-          Games without one are not "old" — the field is optional and most
-          entries have never had it — they simply do not get the boost.
+       Papa's, Fancy Pants, Insanity Box, Fireboy, Snail Bob… Papa's, Fancy
+       Pants, …
 
-       2. Then one per series, round-robin. Six Snail Bobs in a row would eat
-          the wall and hide six other games, so the rest of the list is dealt
-          out a series at a time: Fireboy, Snail Bob, Red Ball, Fireboy… Every
-          series is represented before any series repeats.
+     That is both of the things the wall is meant to do at once. Every series
+     is represented before any series repeats, so six Snail Bobs cannot eat
+     the wall and hide six other games. And a game carrying an `added` date —
+     what someone came back to see — still surfaces at the front, because its
+     series is dealt first and it is the first card out of that series.
+
+     Doing it in one pass matters more than it looks. The obvious shape is two
+     passes, new arrivals and then the round-robin, and it works right up until
+     a batch of new arrivals is all ONE series: adding the fourteen Papa's
+     games in a single day would have handed that series the entire top of the
+     wall, which is the exact thing the round-robin exists to prevent.
+
+     Games with no `added` date are not "old" — the field is optional and most
+     entries have never had it — they simply do not pull their series forward.
+     A game with no series is its own bucket, so standalone games are dealt
+     alongside the series rather than after them.
 
      Within all of that the order stays shuffled, so the wall still looks
      different on every load. */
@@ -462,28 +473,35 @@
     return isFinite(t) ? t : null;
   }
 
+  function newest(game) {
+    return addedTime(game) || 0;
+  }
+
   function prioritise(games) {
     var shuffled = shuffle(games);
 
-    var fresh = shuffled.filter(addedTime).sort(function (a, b) {
-      return addedTime(b) - addedTime(a);
-    });
-    var rest = shuffled.filter(function (g) {
-      return !addedTime(g);
-    });
-
-    /* Bucket by series, keeping the shuffled order inside each bucket. A game
-       with no series is its own bucket, so standalone games are never crowded
-       out by a long series. */
+    /* Bucket by series, keeping the shuffled order inside each bucket. */
     var order = [];
     var buckets = {};
-    rest.forEach(function (g) {
+    shuffled.forEach(function (g) {
       var key = g.series ? "s:" + normalize(g.series) : "g:" + g.id;
       if (!buckets[key]) {
         buckets[key] = [];
         order.push(key);
       }
       buckets[key].push(g);
+    });
+
+    /* Newest game first out of each bucket, and the bucket holding the newest
+       game deals first. Both sorts are stable, so games and series that are
+       equally new — which is most of them — keep the shuffled order. */
+    order.forEach(function (key) {
+      buckets[key].sort(function (a, b) {
+        return newest(b) - newest(a);
+      });
+    });
+    order.sort(function (a, b) {
+      return newest(buckets[b][0]) - newest(buckets[a][0]);
     });
 
     var dealt = [];
@@ -498,7 +516,7 @@
         }
       }
     }
-    return fresh.concat(dealt);
+    return dealt;
   }
 
   function listToShow(cells) {

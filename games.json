@@ -1441,7 +1441,6 @@
     "author": "Brad Borne",
     "developer": "Brad Borne / Borne Games / DrNeroCF",
     "releaseDate": "2020-03-24",
-    "added": "2026-09-22",
     "dimensions": {
       "w": 800,
       "h": 525
@@ -1482,7 +1481,6 @@
     "author": "Brad Borne",
     "developer": "Brad Borne / Borne Games / DrNeroCF",
     "releaseDate": "2020",
-    "added": "2026-09-22",
     "dimensions": {
       "w": 800,
       "h": 525
@@ -1686,6 +1684,621 @@
       "Snowboarding",
       "Cartoon",
       "Mouse-only",
+      "Officially Licensed"
+    ]
+  },
+  {
+    "id": "papas-pizzeria",
+    "title": "Papa's Pizzeria",
+    "alternateTitles": [
+      "Papas Pizzeria"
+    ],
+    "series": "Papa's",
+    "origin": "https://www.flipline.com/games/papaspizzeria/index.html",
+    "preferSource": "fileArchive",
+    "fileArchive": "papaspizzeria_v2.swf",
+    "fileFlashpointArchiveZip": {
+      "item": "Flashpoint13.0",
+      "zip": "GameData_3.zip",
+      "path": "Flashpoint Ultimate 13/Data/Games/279b23ca-c7f3-4f56-a02f-3752ec7c5c5d-1691347608996.zip",
+      "entry": "content/i.flipline.com/gamefiles/papaspizzeria/papaspizzeria_v2.swf"
+    },
+    "archive.org": "papas_games",
+    "flashpointarchive.org": "279b23ca-c7f3-4f56-a02f-3752ec7c5c5d",
+    "thumb": "https://infinity.unstable.life/images/Logos/27/9b/279b23ca-c7f3-4f56-a02f-3752ec7c5c5d.png",
+    "thumb2": "https://infinity.unstable.life/images/Logos/27/9b/279b23ca-c7f3-4f56-a02f-3752ec7c5c5d.png",
+    "screenshot": "https://infinity.unstable.life/images/Screenshots/27/9b/279b23ca-c7f3-4f56-a02f-3752ec7c5c5d.png",
+    "author": "Flipline Studios",
+    "developer": "Flipline Studios",
+    "releaseDate": "2007-08-07",
+    "added": "2026-09-23",
+    "dimensions": {
+      "w": 600,
+      "h": 450
+    },
+    "description": "Papa Louie runs off on another adventure and leaves Delivery Boy Roy in charge of the pizzeria. Master the four stations and work up the ranks to become the best pizza chef around.",
+    "playModes": [
+      "Single Player"
+    ],
+    "tags": [
+      "Simulation",
+      "Time Management",
+      "Cooking",
+      "Restaurant",
+      "Mouse-only",
+      "Papa Louie",
+      "Officially Licensed"
+    ]
+  },
+  {
+    "id": "papas-burgeria",
+    "title": "Papa's Burgeria",
+    "alternateTitles": [
+      "Papas Burgeria"
+    ],
+    "series": "Papa's",
+    "origin": "https://www.flipline.com/games/papasburgeria/index.html",
+    "preferSource": "fileArchive",
+    "fileArchive": "papasburgeria_v2.swf",
+    "fileFlashpointArchiveZip": {
+      "item": "Flashpoint13.0",
+      "zip": "GameData_23.zip",
+      "path": "Flashpoint Ultimate 13/Data/Games/f55d6576-1aee-414a-bd1e-b7678d697dcf-1698528811848.zip",
+      "entry": "content/i.flipline.com/gamefiles/papasburgeria/papasburgeria_v2.swf"
+    },
+    "archive.org": "papas_games",
+    "flashpointarchive.org": "f55d6576-1aee-414a-bd1e-b7678d697dcf",
+    "thumb": "https://infinity.unstable.life/images/Logos/f5/5d/f55d6576-1aee-414a-bd1e-b7678d697dcf.png",
+    "thumb2": "https://infinity.unstable.life/images/Logos/f5/5d/f55d6576-1aee-414a-bd1e-b7678d697dcf.png",
+    "screenshot": "https://infinity.unstable.life/images/Screenshots/f5/5d/f55d6576-1aee-414a-bd1e-b7678d697dcf.png",
+    "author": "Flipline Studios",
+    "developer": "Flipline Studios",
+    "releaseDate": "2010-12-06",
+    "added": "2026-09-23",
+    "dimensions": {
+      "w": 640,
+      "h": 480
+    },
+    "description": "Cook, stack and serve burgers to all your crazy customers. In this sequel to Papa's Pizzeria you play as Marty or Rita, and the new Upgrade Shop sells furniture, posters and tools to build the very best burgers.",
+    "playModes": [
+      "Single Player"
+    ],
+    "tags": [
+      "Simulation",
+      "Time Management",
+      "Cooking",
+      "Restaurant",
+      "Mouse-only",
+      "Papa Louie",
+      "Officially Licensed"
+    ]
+  },
+  {
+    "id": "papas-taco-mia",
+    "title": "Papa's Taco Mia!",
+    "alternateTitles": [
+      "Papas Taco Mia!"
+    ],
+    "series": "Papa's",
+    "origin": "https://www.flipline.com/games/papastacomia/index.html",
+    "preferSource": "fileArchive",
+    "fileArchive": "papastacomia_v2.swf",
+    "fileFlashpointArchiveZip": {
+      "item": "Flashpoint13.0",
+      "zip": "GameData_23.zip",
+      "path": "Flashpoint Ultimate 13/Data/Games/6a7c068c-71bc-93f8-0c2b-708bf910359a-1698121748877.zip",
+      "entry": "content/i.flipline.com/gamefiles/papastacomia/papastacomia_v2.swf"
+    },
+    "archive.org": "papas_games",
+    "flashpointarchive.org": "6a7c068c-71bc-93f8-0c2b-708bf910359a",
+    "thumb": "https://infinity.unstable.life/images/Logos/6a/7c/6a7c068c-71bc-93f8-0c2b-708bf910359a.png",
+    "thumb2": "https://infinity.unstable.life/images/Logos/6a/7c/6a7c068c-71bc-93f8-0c2b-708bf910359a.png",
+    "screenshot": "https://infinity.unstable.life/images/Screenshots/6a/7c/6a7c068c-71bc-93f8-0c2b-708bf910359a.png",
+    "author": "Flipline Studios",
+    "developer": "Flipline Studios",
+    "releaseDate": "2011-05-20",
+    "added": "2026-09-23",
+    "dimensions": {
+      "w": 640,
+      "h": 480
+    },
+    "description": "After winning a taco eating contest you are handed the keys to Papa's Taco Mia. Unlock ingredients, upgrade the shop, please the picky Closers, and earn up to 60 badges running the wildest taqueria in town.",
+    "playModes": [
+      "Single Player"
+    ],
+    "tags": [
+      "Simulation",
+      "Time Management",
+      "Cooking",
+      "Restaurant",
+      "Mouse-only",
+      "Achievements",
+      "Papa Louie",
+      "Officially Licensed"
+    ]
+  },
+  {
+    "id": "papas-freezeria",
+    "title": "Papa's Freezeria",
+    "alternateTitles": [
+      "Papas Freezeria"
+    ],
+    "series": "Papa's",
+    "origin": "https://www.flipline.com/games/papasfreezeria/index.html",
+    "preferSource": "fileArchive",
+    "fileArchive": "papasfreezeria_v2.swf",
+    "fileFlashpointArchiveZip": {
+      "item": "Flashpoint13.0",
+      "zip": "GameData_23.zip",
+      "path": "Flashpoint Ultimate 13/Data/Games/92ba2d91-e041-2bd4-49ea-21758df711ff-1698122094642.zip",
+      "entry": "content/i.flipline.com/gamefiles/papasfreezeria/papasfreezeria_v2.swf"
+    },
+    "archive.org": "papas_games",
+    "flashpointarchive.org": "92ba2d91-e041-2bd4-49ea-21758df711ff",
+    "thumb": "https://infinity.unstable.life/images/Logos/92/ba/92ba2d91-e041-2bd4-49ea-21758df711ff.png",
+    "thumb2": "https://infinity.unstable.life/images/Logos/92/ba/92ba2d91-e041-2bd4-49ea-21758df711ff.png",
+    "screenshot": "https://infinity.unstable.life/images/Screenshots/92/ba/92ba2d91-e041-2bd4-49ea-21758df711ff.png",
+    "author": "Flipline Studios",
+    "developer": "Flipline Studios",
+    "releaseDate": "2011-08-05",
+    "added": "2026-09-23",
+    "dimensions": {
+      "w": 640,
+      "h": 480
+    },
+    "description": "A summer job on the tropical island of Calypso turns into running the shop alone when Papa Louie takes off at the peak of tourist season. Blend, pour and top ice cream sundaes, and decorate the lobby however you like.",
+    "playModes": [
+      "Single Player"
+    ],
+    "tags": [
+      "Simulation",
+      "Time Management",
+      "Cooking",
+      "Restaurant",
+      "Mouse-only",
+      "Tropical",
+      "Achievements",
+      "Papa Louie",
+      "Officially Licensed"
+    ]
+  },
+  {
+    "id": "papas-pancakeria",
+    "title": "Papa's Pancakeria",
+    "alternateTitles": [
+      "Papas Pancakeria"
+    ],
+    "series": "Papa's",
+    "origin": "https://www.flipline.com/games/papaspancakeria/index.html",
+    "preferSource": "fileArchive",
+    "fileArchive": "papaspancakeria_v2.swf",
+    "fileFlashpointArchiveZip": {
+      "item": "Flashpoint13.0",
+      "zip": "GameData_23.zip",
+      "path": "Flashpoint Ultimate 13/Data/Games/9525910d-72b8-4e84-b668-43a267e00d9c-1698122471378.zip",
+      "entry": "content/i.flipline.com/gamefiles/papaspancakeria/papaspancakeria_v2.swf"
+    },
+    "archive.org": "papas_games",
+    "flashpointarchive.org": "9525910d-72b8-4e84-b668-43a267e00d9c",
+    "thumb": "https://infinity.unstable.life/images/Logos/95/25/9525910d-72b8-4e84-b668-43a267e00d9c.png",
+    "thumb2": "https://infinity.unstable.life/images/Logos/95/25/9525910d-72b8-4e84-b668-43a267e00d9c.png",
+    "screenshot": "https://infinity.unstable.life/images/Screenshots/95/25/9525910d-72b8-4e84-b668-43a267e00d9c.png",
+    "author": "Flipline Studios",
+    "developer": "Flipline Studios",
+    "releaseDate": "2012-03-05",
+    "added": "2026-09-23",
+    "dimensions": {
+      "w": 640,
+      "h": 480
+    },
+    "description": "Papa Louie has been looking after your lost pet at his latest restaurant, and you end up knee deep in batter running it until he returns. Stack pancakes, waffles and french toast, and play the Great Foodini's daily mini-game for prizes.",
+    "playModes": [
+      "Single Player"
+    ],
+    "tags": [
+      "Simulation",
+      "Time Management",
+      "Cooking",
+      "Restaurant",
+      "Mouse-only",
+      "Achievements",
+      "Papa Louie",
+      "Officially Licensed"
+    ]
+  },
+  {
+    "id": "papas-wingeria",
+    "title": "Papa's Wingeria",
+    "alternateTitles": [
+      "Papas Wingeria"
+    ],
+    "series": "Papa's",
+    "origin": "https://www.flipline.com/games/papaswingeria/index.html",
+    "preferSource": "fileArchive",
+    "fileArchive": "papaswingeria_v2.swf",
+    "fileFlashpointArchiveZip": {
+      "item": "Flashpoint13.0",
+      "zip": "GameData_16.zip",
+      "path": "Flashpoint Ultimate 13/Data/Games/c3ab2546-a7b0-89b2-82de-4044d61e1cbd-1691347774521.zip",
+      "entry": "content/i.flipline.com/gamefiles/papaswingeria/papaswingeria_v2.swf"
+    },
+    "archive.org": "papas_games",
+    "flashpointarchive.org": "c3ab2546-a7b0-89b2-82de-4044d61e1cbd",
+    "thumb": "https://infinity.unstable.life/images/Logos/c3/ab/c3ab2546-a7b0-89b2-82de-4044d61e1cbd.png",
+    "thumb2": "https://infinity.unstable.life/images/Logos/c3/ab/c3ab2546-a7b0-89b2-82de-4044d61e1cbd.png",
+    "screenshot": "https://infinity.unstable.life/images/Screenshots/c3/ab/c3ab2546-a7b0-89b2-82de-4044d61e1cbd.png",
+    "author": "Flipline Studios",
+    "developer": "Flipline Studios",
+    "releaseDate": "2012-06-13",
+    "added": "2026-09-23",
+    "dimensions": {
+      "w": 640,
+      "h": 480
+    },
+    "description": "You hit the jackpot on the Mega Prize machine in Starlight City and win Papa's newest restaurant, the catch being the night shift. Take orders, run the deep fryers, sauce the wings and plate them up with garnishes and sides.",
+    "playModes": [
+      "Single Player"
+    ],
+    "tags": [
+      "Simulation",
+      "Time Management",
+      "Cooking",
+      "Restaurant",
+      "Mouse-only",
+      "Achievements",
+      "Papa Louie",
+      "Officially Licensed"
+    ]
+  },
+  {
+    "id": "papas-hot-doggeria",
+    "title": "Papa's Hot Doggeria",
+    "alternateTitles": [
+      "Papas Hot Doggeria"
+    ],
+    "series": "Papa's",
+    "origin": "https://www.flipline.com/games/papashotdoggeria/index.html",
+    "preferSource": "fileArchive",
+    "fileArchive": "papashotdoggeria_v2.swf",
+    "fileFlashpointArchiveZip": {
+      "item": "Flashpoint13.0",
+      "zip": "GameData_23.zip",
+      "path": "Flashpoint Ultimate 13/Data/Games/92781aea-6ad0-2bdb-a963-7131c49b7d07-1698122214858.zip",
+      "entry": "content/i.flipline.com/gamefiles/papashotdoggeria/papashotdoggeria_v2.swf"
+    },
+    "archive.org": "papas_games",
+    "flashpointarchive.org": "92781aea-6ad0-2bdb-a963-7131c49b7d07",
+    "thumb": "https://infinity.unstable.life/images/Logos/92/78/92781aea-6ad0-2bdb-a963-7131c49b7d07.png",
+    "thumb2": "https://infinity.unstable.life/images/Logos/92/78/92781aea-6ad0-2bdb-a963-7131c49b7d07.png",
+    "screenshot": "https://infinity.unstable.life/images/Screenshots/92/78/92781aea-6ad0-2bdb-a963-7131c49b7d07.png",
+    "author": "Flipline Studios",
+    "developer": "Flipline Studios",
+    "releaseDate": "2012-11-19",
+    "added": "2026-09-23",
+    "dimensions": {
+      "w": 640,
+      "h": 480
+    },
+    "description": "The season tickets at Griller Stadium are sold out, so the only way to watch the games is to work for your old pal Papa Louie. Grill hot dogs, top them, pop fresh popcorn and pour drinks for the rowdy fans.",
+    "playModes": [
+      "Single Player"
+    ],
+    "tags": [
+      "Simulation",
+      "Time Management",
+      "Cooking",
+      "Restaurant",
+      "Mouse-only",
+      "Achievements",
+      "Papa Louie",
+      "Officially Licensed"
+    ]
+  },
+  {
+    "id": "papas-cupcakeria",
+    "title": "Papa's Cupcakeria",
+    "alternateTitles": [
+      "Papas Cupcakeria"
+    ],
+    "series": "Papa's",
+    "origin": "https://www.flipline.com/games/papascupcakeria/index.html",
+    "preferSource": "fileArchive",
+    "fileArchive": "papascupcakeria_v2.swf",
+    "fileFlashpointArchiveZip": {
+      "item": "Flashpoint13.0",
+      "zip": "GameData_23.zip",
+      "path": "Flashpoint Ultimate 13/Data/Games/de163cff-9dbe-fcbb-164c-53f5d6873fad-1698121618789.zip",
+      "entry": "content/i.flipline.com/gamefiles/papascupcakeria/papascupcakeria_v2.swf"
+    },
+    "archive.org": "papas_games",
+    "flashpointarchive.org": "de163cff-9dbe-fcbb-164c-53f5d6873fad",
+    "thumb": "https://infinity.unstable.life/images/Logos/de/16/de163cff-9dbe-fcbb-164c-53f5d6873fad.png",
+    "thumb2": "https://infinity.unstable.life/images/Logos/de/16/de163cff-9dbe-fcbb-164c-53f5d6873fad.png",
+    "screenshot": "https://infinity.unstable.life/images/Screenshots/de/16/de163cff-9dbe-fcbb-164c-53f5d6873fad.png",
+    "author": "Flipline Studios",
+    "developer": "Flipline Studios",
+    "releaseDate": "2013-08-07",
+    "added": "2026-09-23",
+    "dimensions": {
+      "w": 640,
+      "h": 480
+    },
+    "description": "Papa's Cupcakeria has just opened in the picturesque town of Frostfield and you have been hired to run it single-handed. Master all four stations, and watch the seasons turn over twelve holidays of clothing, furniture and seasonal toppings.",
+    "playModes": [
+      "Single Player"
+    ],
+    "tags": [
+      "Simulation",
+      "Time Management",
+      "Cooking",
+      "Restaurant",
+      "Mouse-only",
+      "Achievements",
+      "Papa Louie",
+      "Officially Licensed"
+    ]
+  },
+  {
+    "id": "papas-pastaria",
+    "title": "Papa's Pastaria",
+    "alternateTitles": [
+      "Papas Pastaria"
+    ],
+    "series": "Papa's",
+    "origin": "https://www.flipline.com/games/papaspastaria/index.html",
+    "preferSource": "fileArchive",
+    "fileArchive": "papaspastaria_v2.swf",
+    "fileFlashpointArchiveZip": {
+      "item": "Flashpoint13.0",
+      "zip": "GameData_23.zip",
+      "path": "Flashpoint Ultimate 13/Data/Games/2ecf56d6-c5e4-a801-bc7f-60374ba1a051-1698122657601.zip",
+      "entry": "content/i.flipline.com/gamefiles/papaspastaria/papaspastaria_v2.swf"
+    },
+    "archive.org": "papas_games",
+    "flashpointarchive.org": "2ecf56d6-c5e4-a801-bc7f-60374ba1a051",
+    "thumb": "https://infinity.unstable.life/images/Logos/2e/cf/2ecf56d6-c5e4-a801-bc7f-60374ba1a051.png",
+    "thumb2": "https://infinity.unstable.life/images/Logos/2e/cf/2ecf56d6-c5e4-a801-bc7f-60374ba1a051.png",
+    "screenshot": "https://infinity.unstable.life/images/Screenshots/2e/cf/2ecf56d6-c5e4-a801-bc7f-60374ba1a051.png",
+    "author": "Flipline Studios",
+    "developer": "Flipline Studios",
+    "releaseDate": "2013-12-09",
+    "added": "2026-09-23",
+    "dimensions": {
+      "w": 640,
+      "h": 480
+    },
+    "description": "It is a destination wedding in the waterfront town of Portallini, home of Papa's Pastaria. Take orders, cook noodles, and add sauces and toppings to craft a perfect plate of pasta.",
+    "playModes": [
+      "Single Player"
+    ],
+    "tags": [
+      "Simulation",
+      "Time Management",
+      "Cooking",
+      "Restaurant",
+      "Mouse-only",
+      "Achievements",
+      "Papa Louie",
+      "Officially Licensed"
+    ]
+  },
+  {
+    "id": "papas-donuteria",
+    "title": "Papa's Donuteria",
+    "alternateTitles": [
+      "Papas Donuteria"
+    ],
+    "series": "Papa's",
+    "origin": "https://www.flipline.com/games/papasdonuteria/index.html",
+    "preferSource": "fileArchive",
+    "fileArchive": "papasdonuteria_102.swf",
+    "fileFlashpointArchiveZip": {
+      "item": "Flashpoint13.0",
+      "zip": "GameData_23.zip",
+      "path": "Flashpoint Ultimate 13/Data/Games/938f4383-8c92-8e8d-511b-004b5c69999d-1698121956374.zip",
+      "entry": "content/i.flipline.com/gamefiles/papasdonuteria/papasdonuteria_102.swf"
+    },
+    "archive.org": "papas_games",
+    "flashpointarchive.org": "938f4383-8c92-8e8d-511b-004b5c69999d",
+    "thumb": "https://infinity.unstable.life/images/Logos/93/8f/938f4383-8c92-8e8d-511b-004b5c69999d.png",
+    "thumb2": "https://infinity.unstable.life/images/Logos/93/8f/938f4383-8c92-8e8d-511b-004b5c69999d.png",
+    "screenshot": "https://infinity.unstable.life/images/Screenshots/93/8f/938f4383-8c92-8e8d-511b-004b5c69999d.png",
+    "author": "Flipline Studios",
+    "developer": "Flipline Studios",
+    "releaseDate": "2014-06-16",
+    "added": "2026-09-23",
+    "dimensions": {
+      "w": 640,
+      "h": 480
+    },
+    "description": "You took the job at Papa's Donuteria in Powder Point for the coveted Line-Jump Pass, and now owe the carnival town dozens of donuts a day. Cut them out, fry them up, and decorate them with a dizzying array of toppings.",
+    "playModes": [
+      "Single Player"
+    ],
+    "tags": [
+      "Simulation",
+      "Time Management",
+      "Cooking",
+      "Restaurant",
+      "Mouse-only",
+      "Achievements",
+      "Papa Louie",
+      "Officially Licensed"
+    ]
+  },
+  {
+    "id": "papas-cheeseria",
+    "title": "Papa's Cheeseria",
+    "alternateTitles": [
+      "Papas Cheeseria"
+    ],
+    "series": "Papa's",
+    "origin": "https://www.flipline.com/games/papascheeseria/index.html",
+    "preferSource": "fileArchive",
+    "fileArchive": "papascheeseria_102.swf",
+    "fileFlashpointArchiveZip": {
+      "item": "Flashpoint13.0",
+      "zip": "GameData_23.zip",
+      "path": "Flashpoint Ultimate 13/Data/Games/617ca7f3-1cff-3f0c-5b53-07498b3b28d8-1698529130268.zip",
+      "entry": "content/i.flipline.com/gamefiles/papascheeseria/papascheeseria_102.swf"
+    },
+    "archive.org": "papas_games",
+    "flashpointarchive.org": "617ca7f3-1cff-3f0c-5b53-07498b3b28d8",
+    "thumb": "https://infinity.unstable.life/images/Logos/61/7c/617ca7f3-1cff-3f0c-5b53-07498b3b28d8.png",
+    "thumb2": "https://infinity.unstable.life/images/Logos/61/7c/617ca7f3-1cff-3f0c-5b53-07498b3b28d8.png",
+    "screenshot": "https://infinity.unstable.life/images/Screenshots/61/7c/617ca7f3-1cff-3f0c-5b53-07498b3b28d8.png",
+    "author": "Flipline Studios",
+    "developer": "Flipline Studios",
+    "releaseDate": "2015-06-10",
+    "added": "2026-09-23",
+    "dimensions": {
+      "w": 640,
+      "h": 480
+    },
+    "description": "Scarlett and the Shakers had their gear stolen on opening night and replacing it will take a lot of cash. Stack gigantic grilled cheese sandwiches, cook them on the grill, and pile loaded fries on the side.",
+    "playModes": [
+      "Single Player"
+    ],
+    "tags": [
+      "Simulation",
+      "Time Management",
+      "Cooking",
+      "Restaurant",
+      "Mouse-only",
+      "Achievements",
+      "Papa Louie",
+      "Officially Licensed"
+    ]
+  },
+  {
+    "id": "papas-bakeria",
+    "title": "Papa's Bakeria",
+    "alternateTitles": [
+      "Papas Bakeria"
+    ],
+    "series": "Papa's",
+    "origin": "https://www.flipline.com/games/papasbakeria/index.html",
+    "preferSource": "fileArchive",
+    "fileArchive": "papasbakeria_101.swf",
+    "fileFlashpointArchiveZip": {
+      "item": "Flashpoint13.0",
+      "zip": "GameData_23.zip",
+      "path": "Flashpoint Ultimate 13/Data/Games/a8707c0f-6aac-4c94-9d8a-cc397c97cc88-1698528763583.zip",
+      "entry": "content/i.flipline.com/gamefiles/papasbakeria/papasbakeria_101.swf"
+    },
+    "archive.org": "papas_games",
+    "flashpointarchive.org": "a8707c0f-6aac-4c94-9d8a-cc397c97cc88",
+    "thumb": "https://infinity.unstable.life/images/Logos/a8/70/a8707c0f-6aac-4c94-9d8a-cc397c97cc88.png",
+    "thumb2": "https://infinity.unstable.life/images/Logos/a8/70/a8707c0f-6aac-4c94-9d8a-cc397c97cc88.png",
+    "screenshot": "https://infinity.unstable.life/images/Screenshots/a8/70/a8707c0f-6aac-4c94-9d8a-cc397c97cc88.png",
+    "author": "Flipline Studios",
+    "developer": "Flipline Studios",
+    "releaseDate": "2016-03-14",
+    "added": "2026-09-23",
+    "dimensions": {
+      "w": 640,
+      "h": 480
+    },
+    "description": "Papa Louie's tenth anniversary restaurant sits in Whiskview Mall and serves the most sought-after pies in town. Choose the crust, fill it with wild ingredients, bake it to perfection, and finish it at the Top Station.",
+    "playModes": [
+      "Single Player"
+    ],
+    "tags": [
+      "Simulation",
+      "Time Management",
+      "Cooking",
+      "Restaurant",
+      "Mouse-only",
+      "Achievements",
+      "Papa Louie",
+      "Officially Licensed"
+    ]
+  },
+  {
+    "id": "papas-sushiria",
+    "title": "Papa's Sushiria",
+    "alternateTitles": [
+      "Papas Sushiria"
+    ],
+    "series": "Papa's",
+    "origin": "https://www.flipline.com/games/papassushiria/index.html",
+    "preferSource": "fileArchive",
+    "fileArchive": "papassushiria_101.swf",
+    "fileFlashpointArchiveZip": {
+      "item": "Flashpoint13.0",
+      "zip": "GameData_23.zip",
+      "path": "Flashpoint Ultimate 13/Data/Games/b9a8dbb9-0cd7-434b-b226-13dc9dd07b49-1698121854196.zip",
+      "entry": "content/i.flipline.com/gamefiles/papassushiria/papassushiria_101.swf"
+    },
+    "archive.org": "papas_games",
+    "flashpointarchive.org": "b9a8dbb9-0cd7-434b-b226-13dc9dd07b49",
+    "thumb": "https://infinity.unstable.life/images/Logos/b9/a8/b9a8dbb9-0cd7-434b-b226-13dc9dd07b49.png",
+    "thumb2": "https://infinity.unstable.life/images/Logos/b9/a8/b9a8dbb9-0cd7-434b-b226-13dc9dd07b49.png",
+    "screenshot": "https://infinity.unstable.life/images/Screenshots/b9/a8/b9a8dbb9-0cd7-434b-b226-13dc9dd07b49.png",
+    "author": "Flipline Studios",
+    "developer": "Flipline Studios",
+    "releaseDate": "2016-12-13",
+    "added": "2026-09-23",
+    "dimensions": {
+      "w": 640,
+      "h": 480
+    },
+    "description": "You break Papa Louie's lucky cat statue, he leaves on a wild-eyed mission, and the restaurant is yours. Cook and spread the rice, roll and top the sushi, cut it into bite-size morsels, and mix bubble tea to serve alongside.",
+    "playModes": [
+      "Single Player"
+    ],
+    "tags": [
+      "Simulation",
+      "Time Management",
+      "Cooking",
+      "Restaurant",
+      "Mouse-only",
+      "Achievements",
+      "Papa Louie",
+      "Officially Licensed"
+    ]
+  },
+  {
+    "id": "papas-scooperia",
+    "title": "Papa's Scooperia",
+    "alternateTitles": [
+      "Papas Scooperia"
+    ],
+    "series": "Papa's",
+    "origin": "https://www.flipline.com/games/papasscooperia/index.html",
+    "preferSource": "fileArchive",
+    "fileArchive": "papasscooperia_v102.swf",
+    "fileFlashpointArchiveZip": {
+      "item": "Flashpoint13.0",
+      "zip": "GameData_23.zip",
+      "path": "Flashpoint Ultimate 13/Data/Games/1e903a30-5c37-15bb-8e5e-6fea5a8103f2-1698122766689.zip",
+      "entry": "content/i.flipline.com/gamefiles/papasscooperia/papasscooperia_v102.swf"
+    },
+    "archive.org": "papas_games",
+    "flashpointarchive.org": "1e903a30-5c37-15bb-8e5e-6fea5a8103f2",
+    "thumb": "https://infinity.unstable.life/images/Logos/1e/90/1e903a30-5c37-15bb-8e5e-6fea5a8103f2.png",
+    "thumb2": "https://infinity.unstable.life/images/Logos/1e/90/1e903a30-5c37-15bb-8e5e-6fea5a8103f2.png",
+    "screenshot": "https://infinity.unstable.life/images/Screenshots/1e/90/1e903a30-5c37-15bb-8e5e-6fea5a8103f2.png",
+    "author": "Flipline Studios",
+    "developer": "Flipline Studios",
+    "releaseDate": "2018-07-24",
+    "added": "2026-09-23",
+    "dimensions": {
+      "w": 640,
+      "h": 480
+    },
+    "description": "Stranded in Oniontown with no money to get home, you take Papa Louie up on his offer to run his brand-new ice cream shop. Bake fresh cookies, hand-scoop the ice cream, and pile on syrups, shakers and toppings as the sundaes grow.",
+    "playModes": [
+      "Single Player"
+    ],
+    "tags": [
+      "Simulation",
+      "Time Management",
+      "Cooking",
+      "Restaurant",
+      "Mouse-only",
+      "Achievements",
+      "Papa Louie",
       "Officially Licensed"
     ]
   },

@@ -72,12 +72,21 @@ Ruffle" below.
   narrowed result would be misleading.
 - **What gets the space when there isn't enough.** The wall holds only so many
   icons, and far fewer with a game open, so the order of the list decides what
-  survives. Two rules: **new arrivals first** (anything with an `added` date,
-  newest first), then **one series at a time**, round-robin. Six Snail Bobs in
-  a row would eat the wall and hide six other games; dealing a card from each
-  series in turn means every series is on screen before any series repeats. In
-  practice the first dozen icons are a dozen different series. Order is still
-  shuffled inside all of that, so the wall looks different on each load.
+  survives. One rule does both jobs: deal the games out **one series at a
+  time**, round-robin, and let the series that gained a game most recently
+  deal first. Six Snail Bobs in a row would eat the wall and hide six other
+  games; dealing a card from each series in turn means every series is on
+  screen before any series repeats, so in practice the first dozen icons are a
+  dozen different series. A **new arrival** (anything carrying an `added` date)
+  still surfaces at the front, because its series deals first and it is the
+  first card out of that series. Order is still shuffled inside all of that, so
+  the wall looks different on each load.
+  - This used to be two passes — new arrivals, then the round-robin — and that
+    worked right up until a batch of new arrivals was all **one** series.
+    Adding the fourteen Papa's games in a single day handed that series the
+    entire top of the wall, which is the exact thing the round-robin exists to
+    prevent. Sorting the buckets instead of prepending a list fixes it without
+    a second rule.
 - **Hovering** an icon names it in the black readout in the top bar
   (title · author · year) and shows a small label above the icon itself.
 - **A game that cannot be played here is kept off the wall.** It does not
@@ -391,6 +400,15 @@ the bytes are already in memory, and reporting that instant local copy would
 overwrite the honest "Unpacking"/"Starting" text with a download that had
 already finished.
 
+A last thing worth knowing when a game looks slow: **the game's own loading bar
+is not necessarily measuring anything.** Every Papa's game opens on a Flipline
+house advert with a bar under it that takes roughly half a minute to fill and
+then offers CONTINUE — and it fills at about the same rate whether the movie is
+2.8 MB or 20 MB, because it is a timed animation rather than `bytesLoaded`.
+Ours is long gone by then; it left the moment Ruffle had a stage. So most of
+the wait a visitor sees there is the author's, and there is nothing on this
+side to tune.
+
 ### Two archives, two jobs (archive.org vs Flashpoint)
 
 Both archives matter, for different reasons, and the split is forced by what
@@ -667,6 +685,41 @@ What that does **not** change: this player still never spoofs a movie's URL,
 never rewrites a game's bytes, and never bypasses a lock itself. If you would
 rather not carry a patched build, give the entry an `error` field and it
 leaves the wall while staying in the catalogue with the reason.
+
+### One item, fourteen games: the Papa's series
+
+Flipline Studios' fourteen Flash *Papa's* games are the largest single block
+here, and the easiest to source, because someone had already done the work: the
+archive.org item [`papas_games`](https://archive.org/details/papas_games) holds
+all fourteen as loose `.swf` files, under exactly the filenames Flashpoint's
+own launch commands point at on `i.flipline.com`:
+
+| Flashpoint launch command | file in `papas_games` |
+| ------------------------- | --------------------- |
+| `i.flipline.com/gamefiles/papaspizzeria/papaspizzeria_v2.swf` | `papaspizzeria_v2.swf` |
+| `…/papasscooperia/papasscooperia_v102.swf` | `papasscooperia_v102.swf` |
+| …and twelve more, every one matching | |
+
+That is worth more than convenience. **Matching names and sizes, then one hash,
+establish that the streamed build is the build Flashpoint marks Playable**:
+`papaspizzeria_v2.swf` is `sha256:86ebb12d…` both as the loose file on
+archive.org and as
+`content/i.flipline.com/gamefiles/papaspizzeria/papaspizzeria_v2.swf` extracted
+from Flashpoint's GameZIP. So every entry takes `preferSource: "fileArchive"` —
+one file, one request — and keeps `fileFlashpointArchiveZip` as the fallback,
+which costs a zip extraction out of a 100 GB+ part to arrive at the same bytes.
+
+Two things that generalise to any game sourced this way:
+
+- **Flashpoint's "Playable" means Flash Player, not Ruffle.** It is evidence
+  about the *file*, never about whether the game runs here. All fourteen were
+  opened in the browser and clicked through to the save-slot screen; Papa's
+  Pizzeria was taken further, to Day 1 with a save written to storage.
+- **Papa's Pizzeria is the odd one out.** It is the only AVM1 title in the
+  series (SWF v9; the other thirteen are AS3, up to SWF v35), and Ruffle logs
+  `Tried to instantiate a non-registered character FocusManager` for it — an
+  unimplemented Flash UI component. It is noise: the title screen, the name
+  field and typing into it all work.
 
 ### Htdocs: the games Flashpoint does not zip
 
@@ -1031,7 +1084,7 @@ site is served over TLS.
 | host | what | where it comes from |
 | ---- | ---- | ------------------- |
 | `unpkg.com` | The Ruffle emulator, pinned `@0.6.0`. Also serves Ruffle's `.wasm` and lazily-loaded code chunks once a game starts. | `<script>` in `index.html`, and both files in `tools/` |
-| `infinity.unstable.life` | Tile art — Flashpoint's logo and screenshot CDN (119 URLs) | `thumb` / `thumb2` / `screenshot` in `games.json`, drawn by `buildArt()` → `attachThumb()` in `js/app.js` |
+| `infinity.unstable.life` | Tile art — Flashpoint's logo and screenshot CDN (161 URLs) | `thumb` / `thumb2` / `screenshot` in `games.json`, drawn by `buildArt()` → `attachThumb()` in `js/app.js` |
 | `www.snailb.com` | Tile art — the Snail Bob developer's own site (8) | ″ |
 | `img.poki-cdn.com` | Tile art — Poki (6) | ″ |
 | `cdn2.steamgriddb.com` | Tile art — SteamGridDB (4) | ″ |
@@ -1039,7 +1092,7 @@ site is served over TLS.
 | `cdn2.kongcdn.com` | Tile art — Kongregate (1) | ″ |
 
 Tile images are `loading="lazy"`, so one wall load fetches only what is on
-screen — around 50 of the 139, not all of them.
+screen — around 50 of the 181, not all of them.
 
 ### 2. Fetched when a game is opened
 
@@ -1062,17 +1115,18 @@ Links, not subresources. Nothing here is contacted unless someone chooses it.
 | `ooooooooo.ooo` | "play at 9o3o ↗" — Flashpoint's web player. A separate domain from `flashpointarchive.org`, and it answers `X-Frame-Options: DENY`, so it can only ever be a link out. | credits, `js/player.js` |
 | `flashpointarchive.org` | The game's catalogue entry | credits |
 | `archive.org` | The item page the game streams from | credits / licence line |
-| 17 publisher / archive sites | "original release ↗" — where the game was first published | `origin` in `games.json` |
+| 18 publisher / archive sites | "original release ↗" — where the game was first published | `origin` in `games.json` |
 
-All seventeen, 38 links in total: `www.kongregate.com` (8), `www.agame.com`
-(5), `www.newgrounds.com` (4), `www.nitrome.com` (3), `www.notdoppler.com`
-(3), `www.snailb.com` (2), `web.archive.org` (2 — Wayback captures of pages
-that no longer exist), `www.addictinggames.com` (2), and one each of
-`armorgames.com`, `www.maxgames.com`, `en.y8.com`, `www.bornegames.com`,
-`bornegames.com`, `www.crazygames.com`, `www.miniclip.com`,
-`www.xgenstudios.com`, `www.deviantart.com`.
+All eighteen, 52 links in total: `www.flipline.com` (14),
+`www.kongregate.com` (8), `www.agame.com` (5), `www.newgrounds.com` (4),
+`www.nitrome.com` (3), `www.notdoppler.com` (3), `www.snailb.com` (2),
+`web.archive.org` (2 — Wayback captures of pages that no longer exist),
+`www.addictinggames.com` (2), and one each of `armorgames.com`,
+`www.maxgames.com`, `en.y8.com`, `www.bornegames.com`, `bornegames.com`,
+`www.crazygames.com`, `www.miniclip.com`, `www.xgenstudios.com`,
+`www.deviantart.com`.
 
-> **Ten of these are still `http://`** — two on snailb.com, four on agame.com,
+> **Ten of these are still `http://`** — five on agame.com, two on snailb.com,
 > and one each on addictinggames, crazygames and xgenstudios. Harmless as far
 > as this page goes (they are navigations, not subresources, so no mixed
 > content), but clicking one leaves TLS behind. Several of those hosts are
@@ -1096,7 +1150,21 @@ them apart when auditing:
 
   `google-analytics.com` · `ssl.google-analytics.com` · `core.mochibot.com` ·
   `server.cpmstar.com` · `api.configar.org` · `games.cdn.spilcloud.com` ·
-  `files.cdn.spilcloud.com` · `i.notdoppler.com` · `www8.agame.com`
+  `files.cdn.spilcloud.com` · `i.notdoppler.com` · `www8.agame.com` ·
+  `www.fliplineads.com` · `agi.armorgames.com`
+
+  The last two arrived with the Papa's series. **Every one of the fourteen**
+  asks `www.fliplineads.com/serve/data/<game>.xml` on startup — the publisher's
+  own ad server, filling the house advert the games open on — and Papa's
+  Freezeria also asks `agi.armorgames.com/assets/agi/AGI.swf`, the sponsor API
+  for the one game in the series Armor Games sponsored. Both are refused and
+  every game plays through anyway; the advert falls back to a built-in one.
+
+  Their query strings are worth a look while auditing, because they show what a
+  game can tell about where it is running: `?t=…&w=640&d=archive%2Eorg&h=480`.
+  The `d=` is the domain, and the game reads it off the URL the movie was
+  loaded from — which on this site is honestly `archive.org`, because that is
+  genuinely where the file came from. Nothing here spoofs it.
 
 One host is refused a layer earlier: **`www.mochiads.com`** is on Ruffle's own
 internal blocklist, so Ruffle declines it before our wrapper ever sees the
@@ -1353,6 +1421,16 @@ practice they hold sound and music preferences, so the Spil-published games
 (Fireboy & Watergirl, Snail Bob) quietly share their audio settings. That is
 Flash's own behaviour rather than a bug here, and it is not worth unpicking.
 
+A root-scoped save from a **streamed** movie keeps the host, so it lands one
+level up rather than at the very top: the Papa's games all save as
+`archive.org//RoyPizzeriaSlot1`, `archive.org//papasburgeria_1` and so on.
+That is still a namespace shared by every archive-streamed game that saves at
+the root, and the only thing keeping the series apart inside it is that
+Flipline put each game's own name in the SharedObject name. Confirmed by
+playing two of them far enough to force a write, which is the only way to
+know — the names are assembled at runtime and do not appear as strings in the
+SWF.
+
 This changed when playback moved from the archive's iframe to our Ruffle.
 Previously saves landed under **archive.org's** origin, where this site could
 neither read nor erase them. One consequence: saves made before that switch are
@@ -1360,25 +1438,36 @@ still on archive.org's origin and **do not carry over**.
 
 ## Content shipped here
 
-**24 real classics streamed from the Internet Archive**, including four
-series — Fireboy & Watergirl (Forest, Light, Ice and Crystal Temples), Red
-Ball (1–3 plus Red Ball 4 Volumes 1–3), Bad Ice Cream (1–2) and the complete
-Earn to Die (2011, 2012, 2012: Part 2 and 2: Exodus) — plus Bloxorz, The World's Hardest Game 2,
-Fancy Pants Adventure, Interactive Buddy, Effing Worms, Vex 3, Motherload and
-Raft Wars. Each was **verified to load and run** before shipping. See
+**62 entries, 60 of them playable**, every one streamed from an archive at the
+moment it is clicked. Nine series carry most of it:
+
+| series | games |
+| ------ | ----- |
+| Papa's | 14 — Pizzeria through Scooperia, the complete Flash run |
+| The Fancy Pants Adventures | 10 |
+| Snail Bob | 8 |
+| Fireboy & Watergirl | 6 (4 playable) |
+| Henry Stickmin | 5 |
+| Earn to Die | 4 |
+| The World's Hardest Game | 4 |
+| Bad Ice Cream | 3 |
+| The Insanity Box | 2 |
+
+plus Bad Piggies, Effing Worms, Interactive Buddy, Bloxorz, Motherload and
+City Under Siege. Each was **verified to load and run** before shipping — not
+"the header parsed", but opened in a browser and played. See
 [`research/archive-flash-games.md`](research/archive-flash-games.md) for the
 full list and the titles that were rejected (site-locked, white-screening,
-mislabeled, or not Flash at all — including Bad Ice Cream 3, which is URL-locked
-with no working archive copy).
+mislabeled, or not Flash at all).
 
 Nothing per-game is stored in this repo at all: the games stream from the
 archive and the icons are hotlinked official logo artwork.
 
 ### Tile art: two layers, composited in CSS
 
-Official logos are almost all **wide banners** — of the 15 games with a
-Flashpoint entry, only two are square — so cropping them to a square tile
-(`object-fit: cover`) cuts the title off, and stretching them is worse. Each
+Official logos are almost all **wide banners** — square ones are the rare
+exception — so cropping them to a square tile (`object-fit: cover`) cuts the
+title off, and stretching them is worse. Each
 tile therefore draws its art as two layers (`buildArt` in `js/app.js`):
 
 | layer | image | how |

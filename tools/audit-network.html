@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Network audit — every game</title>
+  <style>
+    body { margin: 0; background: #111; color: #ddd;
+           font: 13px/1.5 "Trebuchet MS", Arial, sans-serif; }
+    .bar { padding: 10px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    #stage { width: 480px; height: 360px; background: #000; margin: 0 10px; }
+    table { border-collapse: collapse; width: calc(100% - 20px); margin: 10px; }
+    th, td { border: 1px solid #333; padding: 4px 7px; text-align: left;
+             vertical-align: top; font-size: 12px; }
+    th { background: #1d1d1d; position: sticky; top: 0; }
+    td.u { font-family: ui-monospace, Menlo, monospace; font-size: 11px;
+           word-break: break-all; max-width: 520px; }
+    .ok { color: #8ade7a; } .bad { color: #ff8a7a; } .meh { color: #ffd166; }
+  </style>
+</head>
+<body>
+  <!-- Loads every game in games.json in turn through the real player module
+       and records, per game: what it reached for and was refused, what it was
+       actually allowed to fetch, any console error it produced, and whether
+       Ruffle ever reported the movie's metadata.
+
+       The pass condition is one row per game with NO allowed request other
+       than the game file itself.
+
+       READ "Stage" AND "Console errors" WITH SUSPICION. This mounts and tears
+       down two dozen Ruffle instances into one div, which Ruffle does not much
+       like — the count of rows reporting "no metadata" varies run to run, and
+       has included games that play perfectly well when opened normally. A slow
+       game can also still be downloading when its turn ends. Before believing
+       a game is broken, open it on the wall. The NETWORK columns are the
+       reliable part, and the reason this page exists. -->
+  <div class="bar">
+    <button id="go">Run audit</button>
+    <label>seconds per game
+      <input id="dwell" type="number" value="12" min="3" max="60" style="width:60px">
+    </label>
+    <span id="status">idle</span>
+  </div>
+  <div id="stage"></div>
+  <table id="out">
+    <thead>
+      <tr><th>Game</th><th>Source</th><th>Stage</th><th>Fetched</th>
+          <th>Refused</th><th>Console errors</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>window.RufflePlayer = window.RufflePlayer || {};</script>
+  <script src="https://unpkg.com/@ruffle-rs/ruffle@0.6.0"></script>
+  <script src="../js/player.js"></script>
+  <script>
+    var FP = window.FlashbackPlayer;
+    var stage = document.getElementById("stage");
+    var tbody = document.querySelector("#out tbody");
+    var statusEl = document.getElementById("status");
+
+    /* Console errors are only visible to us if we watch them ourselves. */
+    var errors = [];
+    var realError = console.error.bind(console);
+    console.error = function () {
+      errors.push(Array.prototype.slice.call(arguments).join(" ").slice(0, 300));
+      realError.apply(null, arguments);
+    };
+    window.addEventListener("error", function (e) {
+      errors.push("uncaught: " + (e.message || e.type));
+    });
+    window.addEventListener("unhandledrejection", function (e) {
+      errors.push("unhandled rejection: " + (e.reason && e.reason.message || e.reason));
+    });
+
+    /* Mirrors player.js SOURCE_ORDER; kept local so this page needs nothing
+       exported from the module just to label a row. */
+    var SOURCES = ["fileLocal", "fileArchive", "file", "fileFlashpointArchiveZip"];
+    function sourceOf(g) {
+      var order = SOURCES.indexOf(g.preferSource) !== -1
+        ? [g.preferSource].concat(SOURCES.filter(function (k) { return k !== g.preferSource; }))
+        : SOURCES;
+      for (var i = 0; i < order.length; i++) {
+        if (g[order[i]]) { return order[i]; }
+      }
+      return "?";
+    }
+
+    function cell(row, text, cls) {
+      var td = document.createElement("td");
+      if (cls) { td.className = cls; }
+      td.textContent = text;
+      row.appendChild(td);
+      return td;
+    }
+
+    document.getElementById("go").addEventListener("click", async function () {
+      this.disabled = true;
+      tbody.textContent = "";
+      var dwell = (parseInt(document.getElementById("dwell").value, 10) || 12) * 1000;
+      /* XHR, not fetch: player.js replaces window.fetch with the game network
+         policy, and from its point of view this page is a game reaching for
+         something that is not its own file — so a fetch here gets a 204. (Not
+         FP.loadManifest() either: its path is relative to the site root and
+         this page lives one directory down.) */
+      var games = JSON.parse(await new Promise(function (ok, no) {
+        var x = new XMLHttpRequest();
+        x.open("GET", "../games.json");
+        x.onload = function () { ok(x.responseText); };
+        x.onerror = function () { no(new Error("could not read ../games.json")); };
+        x.send();
+      }));
+
+      for (var i = 0; i < games.length; i++) {
+        var g = games[i];
+        statusEl.textContent = (i + 1) + "/" + games.length + "  " + g.title;
+
+        errors.length = 0;
+        var before = FP.blockedRequests().length;
+        var mark = performance.now();
+
+        FP.releaseStage(stage);
+        stage.textContent = "";
+        FP.mount(stage, g, function () {});
+
+        await new Promise(function (r) { setTimeout(r, dwell); });
+
+        /* Everything the browser actually went and got during this game's
+           turn, minus this page's own files. */
+        var fetched = performance.getEntriesByType("resource")
+          .filter(function (e) { return e.startTime >= mark; })
+          .map(function (e) { return e.name; })
+          .filter(function (n) { return n.indexOf(location.origin) !== 0; });
+
+        var refused = FP.blockedRequests().slice(before);
+        var player = stage.querySelector("ruffle-player");
+        var md = player && player.metadata;
+
+        var row = document.createElement("tr");
+        cell(row, g.title || g.id);
+        cell(row, sourceOf(g));
+        cell(row, md ? md.width + "x" + md.height : "no metadata",
+             md ? "ok" : "bad");
+        cell(row, fetched.join("\n") || "(nothing)", "u");
+        cell(row, refused.join("\n") || "(none)", "u meh");
+        cell(row, errors.join("\n") || "(none)", errors.length ? "u bad" : "u ok");
+        tbody.appendChild(row);
+      }
+
+      FP.releaseStage(stage);
+      stage.textContent = "";
+      statusEl.textContent = "done — " + games.length + " games";
+      this.disabled = false;
+    });
+  </script>
+</body>
+</html>

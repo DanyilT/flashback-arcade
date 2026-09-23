@@ -1,0 +1,7 @@
+# Flashpoint index caches — the parsed central directories of the GameData and
+# Htdocs parts on the archive.org mirror. Around 120 MB, and entirely
+# rebuildable: tools/find-flashpoint-zip.py re-reads any part it needs over
+# range requests. Keeping them out of git matters more than it looks, because
+# git history is forever — committing them once costs every future clone that
+# 120 MB even if they are deleted in the next commit.
+tools/.fp-index/

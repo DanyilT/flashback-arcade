@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Flashback Arcade">
+  <!-- The site's logo badge, on its own: the orange bevel of the top bar with
+       the dark play badge sat in it. Nothing smaller than a few pixels, so it
+       still reads as a play button in a 16px browser tab. Corners are evenly
+       rounded here rather than lopsided like the page chrome — at 16px the
+       short axis of a lopsided radius reads as a nick, not a style. -->
+  <defs>
+    <linearGradient id="fa-orange" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffc46b"/>
+      <stop offset="0.48" stop-color="#ff9b21"/>
+      <stop offset="0.52" stop-color="#e2680a"/>
+      <stop offset="1" stop-color="#cf5e05"/>
+    </linearGradient>
+    <linearGradient id="fa-dark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6b3200"/>
+      <stop offset="1" stop-color="#3d1c00"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="1" y="1" width="62" height="62" rx="14"
+        fill="url(#fa-orange)" stroke="#a34600" stroke-width="2"/>
+  <rect x="4.5" y="4.5" width="55" height="55" rx="12"
+        fill="none" stroke="#ffe9c2" stroke-width="1.5" opacity="0.55"/>
+
+  <rect x="11" y="11" width="42" height="42" rx="10"
+        fill="url(#fa-dark)" stroke="#2a1300" stroke-width="2"/>
+  <path d="M26 20.5 L45 32 L26 43.5 Z" fill="#ffcf66"/>
+</svg>

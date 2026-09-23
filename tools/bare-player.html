@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bare Ruffle — timing harness</title>
+  <style>
+    body { margin: 0; background: #111; color: #ddd;
+           font: 13px/1.5 "Trebuchet MS", Arial, sans-serif; }
+    .bar { padding: 8px 10px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    input { flex: 1 1 520px; min-width: 260px; padding: 5px 8px; }
+    #stage { height: 70vh; background: #000; margin: 0 auto; }
+    #log { padding: 8px 10px; white-space: pre-wrap; font-family: ui-monospace, Menlo, monospace; }
+  </style>
+</head>
+<body>
+  <!-- A player with nothing else on the page, to separate "the portal's wall is
+       competing for CPU" from "Ruffle itself is this fast". Open it, pick a
+       renderer, load the same SWF, and compare the numbers with the portal and
+       with another player. -->
+  <div class="bar">
+    <input id="url" value="https://archive.org/cors/fireboy-and-watergirl-3-in-the-ice-temple/FireBoyAndWaterGirl.swf">
+    <select id="renderer">
+      <option value="">auto (Ruffle picks)</option>
+      <option value="webgpu">webgpu</option>
+      <option value="wgpu-webgl">wgpu-webgl</option>
+      <option value="webgl">webgl</option>
+      <option value="canvas">canvas</option>
+    </select>
+    <select id="quality">
+      <option value="">quality: default</option>
+      <option value="low">low</option>
+      <option value="medium">medium</option>
+      <option value="high">high</option>
+      <option value="best">best</option>
+    </select>
+    <label>stage <input id="width" type="number" value="640" min="200" max="2000" style="flex:0 0 90px;min-width:90px"> px</label>
+    <button id="go">Load</button>
+  </div>
+  <div id="stage"></div>
+  <div id="log">Pick a renderer and press Load.</div>
+
+  <script>window.RufflePlayer = window.RufflePlayer || {};</script>
+  <script src="https://unpkg.com/@ruffle-rs/ruffle@0.6.0"></script>
+  <script>
+    var stage = document.getElementById("stage");
+    var out = document.getElementById("log");
+
+    function say(line) { out.textContent += "\n" + line; }
+
+    document.getElementById("go").addEventListener("click", async function () {
+      out.textContent = "";
+      stage.textContent = "";
+
+      var url = document.getElementById("url").value.trim();
+      var renderer = document.getElementById("renderer").value;
+      var quality = document.getElementById("quality").value;
+
+      // Stage size is a performance variable, not just a cosmetic one: Ruffle
+      // draws CSS pixels x devicePixelRatio every frame, so a stage stretched
+      // to fill a panel can cost several times what native size costs. 9o3o
+      // caps its player at the game's native width; ours fills the panel.
+      var width = parseInt(document.getElementById("width").value, 10) || 640;
+      stage.style.width = width + "px";
+      say("stage " + width + "px CSS x dpr " + window.devicePixelRatio +
+          " = " + Math.round(width * window.devicePixelRatio) + " device px wide");
+
+      // 1. download, timed on its own so it is never confused with run time
+      var t0 = performance.now();
+      var bytes;
+      try {
+        bytes = await (await fetch(url, { cache: "no-store" })).arrayBuffer();
+      } catch (e) {
+        say("fetch failed: " + e.message);
+        return;
+      }
+      var fetched = performance.now() - t0;
+      say("downloaded " + (bytes.byteLength / 1048576).toFixed(2) + " MB in " +
+          Math.round(fetched) + " ms");
+
+      // 2. hand Ruffle a finished blob, so what follows is pure execution
+      var blob = URL.createObjectURL(new Blob([bytes], { type: "application/x-shockwave-flash" }));
+      var player = window.RufflePlayer.newest().createPlayer();
+      player.style.width = "100%";
+      player.style.height = "100%";
+      stage.appendChild(player);
+
+      var cfg = { url: blob, autoplay: "on", letterbox: "on", scale: "showAll",
+                  unmuteOverlay: "visible", logLevel: "error" };
+      if (renderer) { cfg.preferredRenderer = renderer; }
+      if (quality) { cfg.quality = quality; }
+
+      var t1 = performance.now();
+      await (typeof player.ruffle === "function" ? player.ruffle() : player).load(cfg);
+      say("Ruffle load() resolved in " + Math.round(performance.now() - t1) + " ms");
+
+      // 3. how long until the movie reports itself ready
+      var t2 = performance.now();
+      (function poll() {
+        if (player.metadata) {
+          say("metadata after " + Math.round(performance.now() - t2) + " ms: " +
+              player.metadata.width + "x" + player.metadata.height +
+              " v" + player.metadata.swfVersion +
+              " frames=" + player.metadata.numFrames);
+          say("\nThe game's own loading screen runs after this point — time it by eye.");
+          return;
+        }
+        if (performance.now() - t2 > 60000) { say("metadata never arrived"); return; }
+        setTimeout(poll, 100);
+      })();
+    });
+  </script>
+</body>
+</html>

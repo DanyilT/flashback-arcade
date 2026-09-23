@@ -1,0 +1,49 @@
+MIT License
+
+Copyright (c) 2026 Danyil Tymchuk
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+--------------------------------------------------------------------------
+
+SCOPE OF THIS LICENSE
+
+The MIT license above applies ONLY to the site code in this repository:
+the HTML, CSS, JavaScript, documentation, and the generated placeholder
+artwork and demo SWF files authored for this project.
+
+IT DOES NOT APPLY TO THE HOSTED GAMES.
+
+Every game served from this site (the files under /games/ and their
+thumbnails under /thumbs/) retains its own, separate license, held by its
+own author. Those licenses are recorded per-entry in games.json and are
+displayed on each game's page. Adding a game to this site does not place it
+under the MIT license and does not transfer any rights in it.
+
+Do not add a game unless you have verified that its license permits you to
+host and redistribute it. See README.md for the licensing checklist.
+
+--------------------------------------------------------------------------
+
+THIRD-PARTY COMPONENTS
+
+Ruffle (bundled under /vendor/ruffle/) is an independent project,
+copyright the Ruffle contributors, dual-licensed MIT OR Apache-2.0.
+Its license texts ship alongside it as vendor/ruffle/LICENSE_MIT and
+vendor/ruffle/LICENSE_APACHE. See https://ruffle.rs for details.

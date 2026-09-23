@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flashback Arcade — Classic Flash Games</title>
+  <meta name="description" content="A wall of classic Flash games, played in your browser with Ruffle. No plugins, no downloads.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="assets/favicon.png" sizes="32x32" type="image/png">
+  <link rel="stylesheet" href="css/style.css?v=1">
+</head>
+<body>
+  <div class="site">
+
+    <!-- ===== Slim top bar: logo, hovered-game readout, counter ===== -->
+    <header class="topbar">
+      <a class="logo" href="index.html">
+        <span class="logo-badge">&#9654;</span>
+        <span class="logo-text">Flashback<b>Arcade</b></span>
+      </a>
+      <div class="readout" id="readout">Loading&hellip;</div>
+      <a class="suggest-link" href="https://forms.gle/XE2MosPk8bqKQFWb8"
+         target="_blank" rel="noopener noreferrer"
+         title="Suggest a game for the arcade (opens a Google Form)">&#43; Suggest<span class="suggest-tail"> a game</span></a>
+      <a class="view-toggle" id="view-toggle" href="?all=1">&#9638; Show All Games</a>
+      <div class="counter">
+        <!-- <span class="counter-label">GAMES ONLINE</span> -->
+        <span class="digits" id="game-count" title="games online count">0000</span>
+      </div>
+    </header>
+
+    <!-- Hidden until the visitor starts typing (no search bar on the wall). -->
+    <div class="filter-strip" id="filter-strip" hidden>
+      <label for="filter">Filter:</label>
+      <input type="text" id="filter" autocomplete="off" spellcheck="false"
+             aria-label="Filter games by title, author, or keyword">
+      <button type="button" class="btn" id="filter-clear">Clear</button>
+      <span class="filter-note" id="filter-note"></span>
+    </div>
+
+    <!-- ===== The wall. Tiles and the inline player both live here. ===== -->
+    <main class="wall" id="wall" aria-live="polite">
+      <div class="wall-loading" id="wall-loading">Loading games&hellip;</div>
+    </main>
+
+    <footer class="footer">
+      <div class="ruffle-note"><span class="footer-link" id="saved-games-link" role="button" tabindex="0">Saved games &amp; storage</span> &bull; Powered by Ruffle</div>
+      <div class="visitors">You are visitor #<span id="visitor-count">000000</span></div>
+      <div>&copy; <span id="copyright-years">2026</span>
+        <a class="source-link" href="https://github.com/DanyilT/flashback-arcade" target="_blank" rel="noopener noreferrer" title="Source on GitHub">Flashback Arcade</a> &bull;
+        All games retain their own licenses.</div>
+    </footer>
+
+  </div>
+
+  <script>window.RufflePlayer = window.RufflePlayer || {};</script>
+  <script src="https://unpkg.com/@ruffle-rs/ruffle@0.6.0"></script>
+  <script src="js/player.js?v=1"></script>
+  <script src="js/app.js?v=1"></script>
+</body>
+</html>
